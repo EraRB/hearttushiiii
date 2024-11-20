@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Heart Drawing</title>
+  <style>
+    body {
+      background-color: #ffe6f0;
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      height: 100vh;
+    }
+
+    h1 {
+      color: #ff3385;
+      font-size: 2.5em;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 18px;
+      font-weight: bold;
+      background-color: #ff66a3;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #ff3385;
+      transform: scale(1.1);
+    }
+
+    canvas {
+      border: 3px solid #ff99c2;
+      border-radius: 10px;
+      margin-top: 20px;
+    }
+
+    #motivationText {
+      font-size: 20px;
+      color: #ff3385;
+      font-weight: bold;
+      margin-top: 20px;
+      text-align: center;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Click Below to See the Magic of Love!</h1>
+  <button onclick="drawHeart()">Draw Heart</button>
+  <canvas id="heartCanvas" width="300" height="300"></canvas>
+  <p id="motivationText" style="display: none;">Nisja mso se ska kush mson për ty! 💖</p>
+
+  <script>
+    function drawHeart() {
+      const canvas = document.getElementById('heartCanvas');
+      const ctx = canvas.getContext('2d');
+
+      // Clear canvas
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Set heart color to pink
+      ctx.fillStyle = '#ff66b3';
+
+      // Draw the heart using math
+      ctx.beginPath();
+      for (let t = 0; t < Math.PI * 2; t += 0.01) {
+        const x = 150 + 70 * Math.pow(Math.sin(t), 3);
+        const y = 150 - (50 * Math.cos(t) - 20 * Math.cos(2 * t) - 10 * Math.cos(3 * t) - 5 * Math.cos(4 * t));
+        ctx.lineTo(x, y);
+      }
+      ctx.closePath();
+      ctx.fill();
+
+      // Display motivational text
+      document.getElementById('motivationText').style.display = 'block';
+    }
+  </script>
+</body>
+</html>
